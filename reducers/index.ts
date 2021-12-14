@@ -1,16 +1,21 @@
 import { Action } from "redux";
 
+import { StatusEnum } from "../enums";
+import { StateInterface } from "../types";
 
-const INITIAL_STATE = { status: 0 };
 
-const reducer = (state = INITIAL_STATE, action: Action) => {
+const INITIAL_STATE = {
+    status: null,
+};
+
+const reducer = (state: StateInterface = INITIAL_STATE, action: Action) => {
     switch (action.type) {
         case "FETCH_REQUEST":
-            return { ...state, status: 0 };
+            return { ...state, status: StatusEnum.request };
         case "FETCH_ERROR":
-            return { ...state, status: 404 };
+            return { ...state, status: 'error' };
         case "FETCH_SUCCESS":
-            return { ...state, status: 200 };
+            return { ...state, status: 'success' };
         default:
             return state;
     }
